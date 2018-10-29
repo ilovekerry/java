@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.xiaobo.demo.dao.UserDaoTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.105 s <<< FAILURE! - in com.xiaobo.demo.dao.UserDaoTest
+testGetAll(com.xiaobo.demo.dao.UserDaoTest)  Time elapsed: 0.103 s  <<< ERROR!
+org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from class path resource [spring/applicationContext.xml]; nested exception is java.io.FileNotFoundException: class path resource [spring/applicationContext.xml] cannot be opened because it does not exist
+	at com.xiaobo.demo.dao.UserDaoTest.init(UserDaoTest.java:15)
+Caused by: java.io.FileNotFoundException: class path resource [spring/applicationContext.xml] cannot be opened because it does not exist
+	at com.xiaobo.demo.dao.UserDaoTest.init(UserDaoTest.java:15)
+
