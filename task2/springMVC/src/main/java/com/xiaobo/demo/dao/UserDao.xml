@@ -3,8 +3,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 定义操作user表的sql映射文件userMapper.xml  -->
 <mapper namespace="com.xiaobo.demo.dao.UserDao">
-    <select id="getAll" resultType="User">
+    <select id="getAll" parameterType="User" resultType="User">
         select * from user
+        <where>
+            <if test="name!=null">
+                and name like concat('%',#{name},'%')
+            </if>
+            <if test="sex!=null">
+                and sex = #{sex}
+            </if>
+        </where>
     </select>
     <select id="getUserById" parameterType="Integer" resultType="User">
         select * from user where id = #{id}

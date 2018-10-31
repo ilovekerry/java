@@ -163,6 +163,7 @@
     <finalName>springMVC</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.0.0</version>
@@ -175,7 +176,34 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.7.0</version>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
         </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+            <transformers>
+              <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                <mainClass>com.xiaobo.demo.App</mainClass>
+              </transformer>
+            </transformers>
+            <shadedArtifactAttached>true</shadedArtifactAttached>
+            <shadedClassifierName>launcher</shadedClassifierName>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>shade</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.20.1</version>
@@ -184,6 +212,9 @@
           <artifactId>maven-war-plugin</artifactId>
           <version>3.2.0</version>
         </plugin>
+
+
+
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
           <version>2.5.2</version>
@@ -207,4 +238,52 @@
       </resource>
     </resources>
   </build>
+  <!--<build>-->
+    <!--<plugins>-->
+      <!--<plugin>-->
+        <!--<groupId>org.apache.maven.plugins</groupId>-->
+        <!--<artifactId>maven-shade-plugin</artifactId>-->
+        <!--<version>3.1.0</version>-->
+        <!--<executions>-->
+          <!--<execution>-->
+            <!--<phase>package</phase>-->
+            <!--<goals>-->
+              <!--<goal>shade</goal>-->
+            <!--</goals>-->
+            <!--<configuration>-->
+
+              <!--<transformers>-->
+                <!--<transformer-->
+                        <!--implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">-->
+                <!--<resource>META-INF/spring.handlers</resource>-->
+                <!--</transformer>-->
+                <!--<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+              <!--<mainClass>com.xiaobo.demo.App</mainClass>-->
+              <!--</transformer>-->
+                <!--<transformer-->
+                        <!--implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">-->
+                  <!--<resource>META-INF/spring.schemas</resource>-->
+                <!--</transformer>-->
+              <!--</transformers>-->
+              <!--<shadedArtifactAttached>true</shadedArtifactAttached>-->
+              <!--<shadedClassifierName>launcher</shadedClassifierName>-->
+
+            <!--</configuration>-->
+          <!--</execution>-->
+        <!--</executions>-->
+      <!--</plugin>-->
+    <!--</plugins>-->
+    <!--&lt;!&ndash;把java文件夹下的xml文件也编译进去&ndash;&gt;-->
+    <!--<resources>-->
+    <!--<resource>-->
+    <!--<directory>src/main/java</directory>-->
+    <!--<includes>-->
+    <!--<include>**/*.xml</include>-->
+    <!--</includes>-->
+    <!--</resource>-->
+    <!--<resource>-->
+    <!--<directory>${basedir}/src/main/resources</directory>-->
+    <!--</resource>-->
+    <!--</resources>-->
+  <!--</build>-->
 </project>

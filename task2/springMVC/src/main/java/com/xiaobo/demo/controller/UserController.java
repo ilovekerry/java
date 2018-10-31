@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -23,9 +24,43 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView userListPage() {
-        List<User> userList = userService.getAll();
-        return new ModelAndView("userList","userListData",userList);
+    public ModelAndView userListPage(@RequestParam(value = "name",required = false) String name,
+                                     @RequestParam(value = "sex",required = false) String sex,
+                                     @RequestParam(value = "page",required = false) String page) {
+        System.out.println(name);
+        System.out.println(sex);
+        System.out.println(page);
+        User user = new User();
+        if(name != null && name.length() != 0){
+            user.setName(name);
+        }
+        if(sex != null && sex.length() != 0){
+            user.setSex(sex);
+        }
+        if(page == null || page.length() == 0){
+            page = "1";
+        }
+        Integer pageNumber = Integer.parseInt(page);
+        List<User> userList = userService.getAll(user);
+        System.out.println(userList.size());
+        Integer total = userList.size();
+        Integer firstIndex = (pageNumber - 1)*10;
+        Integer lastIndex = pageNumber * 10;
+        if(lastIndex + 1>total){
+            lastIndex = total;
+        }
+        userList = userList.subList(firstIndex,lastIndex);
+        double length = Math.ceil(total/10.0);
+        int len = (int)length;
+        Integer[] list = new Integer[len];
+        for (int i = 0;i<len;i++){
+            list[i] = i +1;
+        }
+        ModelAndView mav = new ModelAndView("userList");
+        mav.addObject("userListData",userList);
+        mav.addObject("pageData",list);
+        mav.addObject("total",total);
+        return mav;
     }
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView userAddPage() {

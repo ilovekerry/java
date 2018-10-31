@@ -17,11 +17,11 @@ public class UserServiceTest {
     private static Logger log = Logger.getLogger(UserServiceTest.class);
     @Autowired
     private UserService userService;
-    @Test
-    public void testGetAll(){
-        List<User> result = userService.getAll();
-        log.info(result);
-    }
+//    @Test
+//    public void testGetAll(){
+//        List<User> result = userService.getAll();
+//        log.info(result);
+//    }
     @Test
     public void testGetUserById(){
         Integer id = 10;
