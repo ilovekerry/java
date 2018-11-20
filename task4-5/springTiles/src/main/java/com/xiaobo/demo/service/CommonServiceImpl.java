@@ -17,4 +17,9 @@ public class CommonServiceImpl implements CommonService {
         String newValue = "'"+value + "'";
         return commonMapper.isDataExist(tableName,column,newValue) == 1;
     }
+    @Override
+    public <T> Integer countData(String tableName,String column,T value){
+        String newValue = "'"+value + "'";
+        return commonMapper.isDataExist(tableName,column,newValue);
+    }
 }

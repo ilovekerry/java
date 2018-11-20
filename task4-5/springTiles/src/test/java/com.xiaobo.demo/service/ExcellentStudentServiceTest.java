@@ -3,6 +3,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.xiaobo.demo.pojo.ExcellentStudent;
 import com.xiaobo.demo.pojo.Profession;
 import com.xiaobo.demo.pojo.User;
+import com.xiaobo.demo.util.DesUtil;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +29,8 @@ public class ExcellentStudentServiceTest {
     private UserService userService;
     @Autowired
     private CommonService commonService;
+    @Autowired
+    private DesUtil desUtil;
     @Test
     public void testGet(){
         ExcellentStudent excellentStudent = excellentStudentService.get(1);
@@ -37,7 +40,7 @@ public class ExcellentStudentServiceTest {
     @Test
     public void testService(){
         Profession profession = new Profession();
-        profession.setDevelopmentDirection("前端开发方向");
+        profession.setDevelopmentDirection(Profession.OPTION_DEVELOPMENT_DIRECTION_FRONTEND);
         List<Profession> professionList1 = professionService.selectByDevelopmentDirection(profession);
         for(Profession professionItem:professionList1){
             System.out.println(professionItem.toString());
@@ -57,5 +60,19 @@ public class ExcellentStudentServiceTest {
         Boolean result = commonService.isDataExist("user","password","test2");
         System.out.println(result);
         log.warn(result);
+    }
+    @Test
+    public void testDesUtil(){
+        String userId = "20";
+        String userName = "30";
+        try{
+            String encryptedUserId = desUtil.encrypt(userId);
+            System.out.println(encryptedUserId);
+            String decreptedUserId = desUtil.decrypt(encryptedUserId);
+            System.out.println(decreptedUserId);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 }

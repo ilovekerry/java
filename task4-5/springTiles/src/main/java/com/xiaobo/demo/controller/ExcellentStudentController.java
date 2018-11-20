@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,23 +60,39 @@ public class ExcellentStudentController {
         Map<String,Object> pageData = new HashMap<>();
         pageData.put("offset",0);
         pageData.put("limit",4);
-        List<ExcellentStudent> excellentStudentList = excellentStudentService.selectBySalary(pageData);
+        Integer totolStudent = commonService.getTotal("excellent_student");
+        ExcellentStudent excellentStudent = new ExcellentStudent();
+        excellentStudent.setStatus(ExcellentStudent.EXCELLENT_STUDENT_STATUS_GRADUATED);
+        Integer graduatedStudent = excellentStudentService.countData(excellentStudent);
+        List<ExcellentStudent> excellentStudentList = excellentStudentService.selectBySalary(excellentStudent,pageData);
         modelAndView.addObject("data",excellentStudentList);
+        modelAndView.addObject("totalStudent",totolStudent);
+        modelAndView.addObject("graduatedStudent",graduatedStudent);
         return modelAndView;
     }
     @GetMapping(value = "/u/profession")
     public ModelAndView getProfession(){
         ModelAndView modelAndView = new ModelAndView("profession");
         Profession profession = new Profession();
-        profession.setDevelopmentDirection("前端开发方向");
+        profession.setDevelopmentDirection(Profession.OPTION_DEVELOPMENT_DIRECTION_FRONTEND);
         List<Profession> professionList1 = professionService.selectByDevelopmentDirection(profession);
-        profession.setDevelopmentDirection("后端开发方向");
+        ArrayList professionCountList1 = excellentStudentService.createCountArrayList(professionList1);
+
+        profession.setDevelopmentDirection(Profession.OPTION_DEVELOPMENT_DIRECTION_BACKEND);
         List<Profession> professionList2 = professionService.selectByDevelopmentDirection(profession);
-        profession.setDevelopmentDirection("运维开发方向");
+        ArrayList professionCountList2 = excellentStudentService.createCountArrayList(professionList2);
+
+        profession.setDevelopmentDirection(Profession.OPTION_DEVELOPMENT_DIRECTION_OP);
         List<Profession> professionList3 = professionService.selectByDevelopmentDirection(profession);
+        ArrayList professionCountList3 = excellentStudentService.createCountArrayList(professionList3);
+
         modelAndView.addObject("professionList1",professionList1);
         modelAndView.addObject("professionList2",professionList2);
         modelAndView.addObject("professionList3",professionList3);
+
+        modelAndView.addObject("professionCountList1",professionCountList1);
+        modelAndView.addObject("professionCountList2",professionCountList2);
+        modelAndView.addObject("professionCountList3",professionCountList3);
         return modelAndView;
     }
     @GetMapping(value = "/login")
@@ -111,10 +128,7 @@ public class ExcellentStudentController {
         }
         modelAndView.addObject("data",response);
         return modelAndView;
-//        String stringParams = JSON.toJSONString(params);
-//        User user = JSON.parseObject(stringParams,User.class);
-//        System.out.println(user);
-//        log.warn(user);
+
 
     }
     @GetMapping(value = "/register")

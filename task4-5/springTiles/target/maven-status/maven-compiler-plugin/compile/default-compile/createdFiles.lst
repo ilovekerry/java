@@ -20,6 +20,8 @@ com\xiaobo\demo\util\CommonUtil.class
 com\xiaobo\demo\util\DateTag.class
 com\xiaobo\demo\service\UserServiceImpl.class
 com\xiaobo\demo\interceptor\LoginInterceptor.class
+com\xiaobo\demo\constant\OptionConstant.class
 com\xiaobo\demo\service\ExcellentStudentServiceImpl.class
+com\xiaobo\demo\util\DesUtil.class
 com\xiaobo\demo\util\CookieUtil.class
 com\xiaobo\demo\util\EntityToString.class

@@ -79,11 +79,11 @@
 
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 text-center">
             <p>
-                <img src="/static/image/453254312.png">1000<br>
+                <img src="/static/image/453254312.png">${totalStudent}<br>
                 <span class="up-3">累计在线学习人数</span>
             </p>
             <p>
-                <img src="/static/image/453254312.png">500<br>
+                <img src="/static/image/453254312.png">${graduatedStudent}<br>
                 <span class="up-3">学员已经找到满意工作</span>
             </p>
         </div>
