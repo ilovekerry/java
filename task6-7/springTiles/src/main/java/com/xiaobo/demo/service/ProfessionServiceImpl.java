@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("ProfessionServiceImpl")
 public class ProfessionServiceImpl implements ProfessionService {
     @Autowired
     private ProfessionMapper professionMapper;

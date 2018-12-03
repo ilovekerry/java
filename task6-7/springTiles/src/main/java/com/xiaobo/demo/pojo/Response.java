@@ -2,8 +2,10 @@ package com.xiaobo.demo.pojo;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Component
-public class Response {
+public class Response implements Serializable {
     private Integer code;
     private String message;
 

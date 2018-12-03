@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service("ExcellentStudentServiceImpl")
 public class ExcellentStudentServiceImpl implements ExcellentStudentService {
     @Autowired
     private ExcellentStudentMapper excellentStudentMapper;

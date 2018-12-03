@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("EmailCodeServiceImpl")
 public class EmailCodeServiceImpl implements EmailCodeService{
     private static Logger log = Logger.getLogger(EmailCodeServiceImpl.class);
 

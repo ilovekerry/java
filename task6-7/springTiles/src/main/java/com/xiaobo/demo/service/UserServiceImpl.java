@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@Service
+@Service("UserServiceImpl")
 public class UserServiceImpl implements UserService {
     @Autowired
     private User user;

@@ -17,7 +17,43 @@
     <!--自动扫描包，实现支持注解的IOC-->
 
     <context:component-scan base-package="com.xiaobo.demo" />
-
+    <!--配置RMI-->
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+    <property name="serviceName" value="CommonService"></property>
+    <property name="service" ref="CommonServiceImpl"></property>
+    <property name="serviceInterface" value="com.xiaobo.demo.service.CommonService"></property>
+    <property name="registryPort" value="1199"></property>
+    </bean>
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+    <property name="serviceName" value="EmailCodeService"></property>
+    <property name="service" ref="EmailCodeServiceImpl"></property>
+    <property name="serviceInterface" value="com.xiaobo.demo.service.EmailCodeService"></property>
+    <property name="registryPort" value="1199"></property>
+    </bean>
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+    <property name="serviceName" value="ExcellentStudentService"></property>
+    <property name="service" ref="ExcellentStudentServiceImpl"></property>
+    <property name="serviceInterface" value="com.xiaobo.demo.service.ExcellentStudentService"></property>
+    <property name="registryPort" value="1199"></property>
+    </bean>
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+    <property name="serviceName" value="PhoneCodeService"></property>
+    <property name="service" ref="PhoneCodeServiceImpl"></property>
+    <property name="serviceInterface" value="com.xiaobo.demo.service.PhoneCodeService"></property>
+    <property name="registryPort" value="1199"></property>
+    </bean>
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+    <property name="serviceName" value="ProfessionService"></property>
+    <property name="service" ref="ProfessionServiceImpl"></property>
+    <property name="serviceInterface" value="com.xiaobo.demo.service.ProfessionService"></property>
+    <property name="registryPort" value="1199"></property>
+    </bean>
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+    <property name="serviceName" value="UserService"></property>
+    <property name="service" ref="UserServiceImpl"></property>
+    <property name="serviceInterface" value="com.xiaobo.demo.service.UserService"></property>
+    <property name="registryPort" value="1199"></property>
+    </bean>
     <context:annotation-config/>
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
