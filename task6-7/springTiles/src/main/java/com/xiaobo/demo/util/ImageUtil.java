@@ -23,7 +23,7 @@ import java.io.InputStream;
 public class ImageUtil {
     private static Logger log = Logger.getLogger(ImageUtil.class);
     // 1 初始化用户身份信息(secretId, secretKey)
-    COSCredentials cred = new BasicCOSCredentials("AKIDgF1dGgVEMLDzb2G9eAA5rbDnFXlu3wqs", "Sly0zCLNKAsU2Z1JUTRGwEVewxEPVW6w");
+    COSCredentials cred = new BasicCOSCredentials("AKIDgF1dGgVE", "Sly0zCLNKAsUw");
     // 2 设置bucket的区域, COS地域的简称请参照 https://cloud.tencent.com/document/product/436/6224
 // clientConfig中包含了设置region, https(默认http), 超时, 代理等set方法, 使用可参见源码或者接口文档FAQ中说明
    ClientConfig clientConfig = new ClientConfig(new Region("ap-chengdu"));

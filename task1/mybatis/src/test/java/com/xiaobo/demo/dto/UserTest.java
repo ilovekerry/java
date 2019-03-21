@@ -31,9 +31,9 @@ public class UserTest {
         SqlSession session = sqlSessionFactory.openSession();
         try {
 
-            session.selectOne("updateUserById",2);
-            session.commit();
-            User user = session.selectOne("selectUserById", 2);
+//            session.selectOne("updateUserById",2);
+//            session.commit();
+            User user = session.selectOne("selectUserById", 1);
             session.commit();
             System.out.println(user.getName());
         } catch (Exception e) {
